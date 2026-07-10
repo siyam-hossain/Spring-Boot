@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: RegistrationService
+
+
+stripe:
+  apiUrl: https://api.stripe.com
+  timeout: 1000;
+  enabled: true;
+  supported-currencies: USD, EUR, GBP
+
+mail:
+  host : https://smtp.gmail.com
+  port : 8080
