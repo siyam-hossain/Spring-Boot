@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: ExternalizingConfiguration
+
+stripe:
+  apiUrl : https://api.stripe.com
+  enabled : true
+  timeout : 1000
+  supported-currencies : USD, EUR, GBP
