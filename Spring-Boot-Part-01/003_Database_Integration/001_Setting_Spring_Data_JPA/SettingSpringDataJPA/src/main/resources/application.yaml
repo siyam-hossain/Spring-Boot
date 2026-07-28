@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: SettingSpringDataJPA
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/store?createDatabaseIfNotExist=true
+    username: root
+    password: ""
+
+
