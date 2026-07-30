@@ -1,6 +1,16 @@
 package com.database.settingspringdatajpa.entities;
 
 import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.HashSet;
+import java.util.Set;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+@Getter
+@Setter
 
 @Entity
 @Table(name = "tags")
@@ -12,4 +22,13 @@ public class Tag {
 
     @Column(name = "name")
     private String name;
+
+    // the "tags" comes form User entity Set--->tags
+    @ManyToMany(mappedBy = "tags")
+    @ToString.Exclude
+    private Set<User> user = new HashSet<>();
+
+    public Tag(String name) {
+        this.name = name;
+    }
 }

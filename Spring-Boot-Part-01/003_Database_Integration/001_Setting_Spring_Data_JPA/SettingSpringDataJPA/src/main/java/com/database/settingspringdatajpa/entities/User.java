@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @ToString
 @Setter
@@ -47,5 +49,30 @@ public class User {
         addresses.remove(address);
         address.setUser(null);
     }
+
+    // a user can't have duplicate tags
+    // for many-to-many relationship either part can be owner
+    // for many-to-many relationship we use join-table instead of join-column
+    @ManyToMany
+    @JoinTable(
+            name = "user_tags",
+            // foreign key of current table which is present on table: "user_tags"
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id")
+    )
+    @Builder.Default
+    private Set<Tag> tags = new HashSet<>();
+
+    public void addTag(String tagName) {
+        var tag = new Tag(tagName);
+        tags.add(tag);
+        tag.getUser().add(this);
+    }
+    public void removeTag(String tagName) {
+        var tag = new Tag(tagName);
+        tags.remove(tag);
+        tag.getUser().remove(this);
+    }
+
 
 }
