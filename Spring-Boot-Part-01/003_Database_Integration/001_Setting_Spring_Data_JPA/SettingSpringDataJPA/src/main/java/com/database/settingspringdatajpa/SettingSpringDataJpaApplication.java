@@ -1,5 +1,6 @@
 package com.database.settingspringdatajpa;
 
+import com.database.settingspringdatajpa.entities.Address;
 import com.database.settingspringdatajpa.entities.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,6 +16,18 @@ public class SettingSpringDataJpaApplication {
                 .email("admin@gmail.com")
                 .build();
 
+        var address = Address.builder()
+                .street("123 Main St")
+                .city("Main St")
+                .state("Main St")
+                .zip("12345")
+                .build();
+
+        user.addAddress(address);
+        System.out.println(user);
+
+        user.removeAddress(address);
+        System.out.println(user);
 
     }
 }

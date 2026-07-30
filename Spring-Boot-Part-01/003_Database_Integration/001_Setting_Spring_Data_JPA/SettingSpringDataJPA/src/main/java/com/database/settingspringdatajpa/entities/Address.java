@@ -4,7 +4,7 @@ package com.database.settingspringdatajpa.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-
+@ToString
 @Getter
 @Setter
 @Builder
@@ -29,5 +29,13 @@ public class Address {
 
     @Column(nullable = false, name = "state")
     private String state;
+
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    // an address should know about a user
+    @ToString.Exclude
+    // to avoid string conversion
+    private User user;
 
 }
